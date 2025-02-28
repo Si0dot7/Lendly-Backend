@@ -16,7 +16,7 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParse.json({ limit: "10mb" }));
 
-app.use("", productRouter);
-app.use("", registerRouter);
+app.use("/api", productRouter);
+app.use("/api", registerRouter);
 
 app.listen(PORT, () => console.log("server is running"));
