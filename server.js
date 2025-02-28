@@ -8,6 +8,7 @@ const cors = require("cors");
 const bodyParse = require("body-parser");
 
 const app = express();
+const PORT = process.env.PORT
 
 connectDB();
 
@@ -18,4 +19,4 @@ app.use(bodyParse.json({ limit: "10mb" }));
 app.use("", productRouter);
 app.use("", registerRouter);
 
-app.listen(5000, () => console.log("server is running"));
+app.listen(PORT, () => console.log("server is running"));

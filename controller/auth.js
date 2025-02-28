@@ -1,23 +1,22 @@
 const users = require("../models/auth");
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken')
+const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
   try {
-    const { name, password } = req.body;
+    const { email, password } = req.body;
 
-    var user = await users.findOne({ name });
+    var user = await users.findOne({ email });
     if (user) {
       return res.send("user already exit");
     }
 
     salt = await bcrypt.genSalt(10);
     user = new users({
-      name,
+      email,
       password,
     });
     user.password = await bcrypt.hash(password, salt);
-    console.log(user.password);
 
     await user.save();
     res.send("register successfully");
@@ -28,33 +27,41 @@ exports.register = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const {name,password} = req.body
+    const { email, password } = req.body;
 
-    var user = await users.findOneAndUpdate({name},{new:true})
-    if(user){
-        const isMatch = await bcrypt.compare(password,user.password)
+    var user = await users.findOneAndUpdate({ email }, { new: true });
+    if (user) {
+      const isMatch = await bcrypt.compare(password, user.password);
 
-        if(!isMatch){
-            return res.send('password invalid')
-        }
+      if (!isMatch) {
+        return res.send("password invalid");
+      }
 
-        var payload = {
-            user:{
-                name:user.name
-            }
-        }
+      var payload = {
+        user: {
+          email: user.email,
+        },
+      };
 
-        jwt.sign(payload,'jwtsecret',{expiresIn:'1d'},(error,token)=>{
-            if(error) throw error
-            res.json({token,payload})
-        })
+      jwt.sign(payload, "jwtsecret", { expiresIn: "1d" }, (error, token) => {
+        if (error) throw error;
+        res.json({ token, payload });
+      });
+    } else {
+      res.send("user not found");
     }
-    else{
-        res.send('user not found')
-    }
-
   } catch (error) {
-    console.log('login error :'+error);
-    
+    console.log("login error :" + error);
+  }
+};
+
+exports.currentUser = async (req, res) => {
+  try {
+    console.log(req.user);
+    const user = await users.findOne({email:req.user.email}).select('-password').exec()
+    res.send(user)
+  } catch (error) {
+    console.log(error);
+    res.send("currentUser Error: " + error);
   }
 };
