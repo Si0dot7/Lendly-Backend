@@ -2,17 +2,30 @@ const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema(
   {
-    name: String,
-    detail: {
+    title: {
+      type:String
+    },
+    description: {
       type: String,
     },
-    date: {
+    file: {
+      type: String,
+    },
+    genre: {
+      type: String,
+    },
+    lenderName: {
+      type: String,
+    },
+    
+    status: {
       type: String,
     },
     price: {
       type: Number,
     },
-    file:String,
+    
+    
 
   },{ timestamps: true }
 );
