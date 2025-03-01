@@ -16,6 +16,11 @@ app.use(morgan("dev"));
 app.use(cors());
 app.use(bodyParse.json({ limit: "10mb" }));
 
+app.use(express.urlencoded({ extended: true }));
+const multer = require('multer');
+const upload = multer();
+app.use(upload.none());
+
 app.use("/api", productRouter);
 app.use("/api", registerRouter);
 

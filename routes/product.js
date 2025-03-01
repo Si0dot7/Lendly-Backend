@@ -10,7 +10,7 @@ router.get('/product/:id',auth,read)
 
 router.post('/product',auth,upload,create)
 
-router.put('/product/:id',auth,update)
+router.put('/product/:id',auth,upload,update)
 
 router.delete('/product/:id',auth,remove)
 
