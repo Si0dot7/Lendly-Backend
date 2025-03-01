@@ -14,7 +14,7 @@ exports.read = async (req, res) => {
 exports.list = async (req, res) => {
   try {
     const listProduct = await product.find({}).exec();
-    res.send(listProduct);
+    console.log(listProduct);
     res.json(listProduct)
   } catch (error) {
     console.log(error);
