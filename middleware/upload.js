@@ -1,4 +1,5 @@
 const multer = require('multer')
+const path = require('path')
 
 const storage = multer.diskStorage({
     destination: function(req,file,cb){
@@ -6,7 +7,8 @@ const storage = multer.diskStorage({
     },
     filename: function(req,file,cb){
         const uniqueSuffix = Date.now()+'-'+Math.round(Math.random()*1E9)
-        cb(null,'file-'+uniqueSuffix+file.originalname)
+        const safeFileName = file.originalname.replace(/\s/g, '_');
+        cb(null, 'file-' + uniqueSuffix + path.extname(safeFileName));
     }
 })
 
