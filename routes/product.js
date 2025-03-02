@@ -58,5 +58,18 @@ router.get('/image',async(req,res)=>{
         
     }
   })
+router.get('/image/:id',async(req,res)=>{
+    try {
+        const id = req.params.id;
+        const listImage = await Image.findOne({ _id: id }).exec();
+        console.log(listImage);
+        res.json(listImage)
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+  })
+   
 
 module.exports = router
