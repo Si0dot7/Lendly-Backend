@@ -16,7 +16,7 @@ connectDB();
 
 app.use(morgan("dev"));
 app.use(cors({
-    origin: 'https://lendlyofficial-beta.vercel.app/' 
+    origin: "*"
 }));
 
 app.use(express.json())
