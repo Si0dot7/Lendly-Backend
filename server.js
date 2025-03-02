@@ -15,7 +15,9 @@ const PORT = process.env.PORT
 connectDB();
 
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors({
+    origin: '*' // หรือใช้ '*' ถ้าต้องการอนุญาตทุกโดเมน (ไม่ปลอดภัยเท่าไหร่)
+}));
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
