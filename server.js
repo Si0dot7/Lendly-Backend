@@ -16,7 +16,7 @@ connectDB();
 
 app.use(morgan("dev"));
 app.use(cors({
-    origin: '*' // หรือใช้ '*' ถ้าต้องการอนุญาตทุกโดเมน (ไม่ปลอดภัยเท่าไหร่)
+    origin: 'https://lendlyofficial-beta.vercel.app/' 
 }));
 
 app.use(express.json())
