@@ -11,16 +11,19 @@ const productSchema = mongoose.Schema(
     genre: {
       type: String,
     },
-    lenderName: {
-      type: String,
-    },
-    
-    status: {
-      type: String,
-    },
     price: {
       type: Number,
     },
+    mainLocation:{
+      type:String,
+    },
+    subLocation:{
+      type:String,
+    },
+    productId:{
+      type:Number,
+      default:()=>Math.floor(Date.now()/1000)
+    }
     
     
 
