@@ -4,6 +4,7 @@ const registerRouter = require("./routes/auth");
 const connectDB = require("./config/db");
 const path = require('path')
 
+
 const morgan = require("morgan");
 const cors = require("cors");
 
@@ -19,7 +20,7 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
+// app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 app.use("/api", productRouter);

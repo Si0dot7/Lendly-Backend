@@ -24,10 +24,8 @@ exports.list = async (req, res) => {
 exports.create = async (req, res) => { 
   try { 
     var data = req.body;
-    if (req.file) {
-      data.file = req.file.filename;
-    }
-    const createProduct = await product(data).save();
+    console.log('Data received:', data); 
+    const createProduct = await product.create(data);
     res.send(createProduct);
   } catch (error) {
     console.log(error);

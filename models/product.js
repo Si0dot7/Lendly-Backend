@@ -3,12 +3,9 @@ const mongoose = require("mongoose");
 const productSchema = mongoose.Schema(
   {
     title: {
-      type:String
+      type:String,
     },
     description: {
-      type: String,
-    },
-    file: {
       type: String,
     },
     genre: {
