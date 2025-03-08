@@ -7,15 +7,15 @@ const Image = require('../models/image')
 const multer = require('multer');
 const uploaded = multer();
 
-router.get('/product',list)
+router.get('/product',auth,list)
 
-router.get('/product/:id',read)
+router.get('/product/:id',auth,read)
 
-router.post('/product',uploaded.none(),create)
+router.post('/product',auth,uploaded.none(),create)
 
-router.put('/product/:id',update)
+router.put('/product/:id',auth,update)
 
-router.delete('/product/:id',remove)
+router.delete('/product/:id',auth,remove)
 
 router.post('/upload', upload.single('image'), async (req, res) => {
     try {
