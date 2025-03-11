@@ -11,18 +11,15 @@ const productSchema = mongoose.Schema(
     price: {
       type: Number,
     },
+    image:{
+      type:String,
+    },
     mainLocation:{
       type:String,
     },
     subLocation:{
       type:String,
     },
-    productId:{
-      type:Number,
-      default:()=>Math.floor(Date.now()/1000)
-    }
-    
-    
 
   },{ timestamps: true }
 );

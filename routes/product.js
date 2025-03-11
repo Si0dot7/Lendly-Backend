@@ -11,7 +11,8 @@ router.get('/product',auth,list)
 
 router.get('/product/:id',auth,read)
 
-router.post('/product',auth,uploaded.none(),create)
+// router.post('/product',auth,uploaded.none(),create)
+router.post('/product',auth,create)
 
 router.put('/product/:id',auth,update)
 
@@ -28,20 +29,21 @@ router.post('/upload', upload.single('image'), async (req, res) => {
       // ตรวจสอบว่า secure_url และ public_id มีอยู่จริง
     //   console.log("URL:", req.file.path);
     //   console.log("Public ID:", req.file.filename);
-      console.log(req.body.productId);
+      console.log(req.file);
+      
       
       var data = {
         imageUrl: req.file.path,
         publicId: req.file.filename,
-        productId:req.body.productId
+        
       };
       const createImage = await Image(data ).save()
-    //   console.log('show',createImage);
+      console.log('show',createImage);
       
       res.json({
         imageUrl: req.file.path,      
         publicId: req.file.filename,  
-        productId:req.body.productId 
+        
       });
     } 
     catch (err) {
