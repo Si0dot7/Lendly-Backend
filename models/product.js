@@ -20,6 +20,9 @@ const productSchema = mongoose.Schema(
     subLocation:{
       type:String,
     },
+    token:{
+      type:String,
+    },
 
   },{ timestamps: true }
 );

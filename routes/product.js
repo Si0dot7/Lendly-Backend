@@ -77,5 +77,8 @@ router.get('/image/:id',async(req,res)=>{
     }
   })
    
+  router.get('/ping',(req,res)=>{
+    res.status(200).send('server running')
+  })
 
 module.exports = router
