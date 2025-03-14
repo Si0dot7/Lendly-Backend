@@ -20,7 +20,7 @@ const productSchema = mongoose.Schema(
     subLocation:{
       type:String,
     },
-    token:{
+    email:{
       type:String,
     },
 
