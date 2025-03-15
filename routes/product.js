@@ -1,5 +1,5 @@
 const express = require('express')
-const {read,list,create,update,remove} = require('../controller/product')
+const {read,list,create,update,remove,borrow,updateborrow} = require('../controller/product')
 const router = express.Router()
 const {auth} = require('../middleware/auth')
 const {upload} = require('../config/cloudinaryConfig')
@@ -8,6 +8,8 @@ const multer = require('multer');
 const uploaded = multer();
 
 router.get('/product',auth,list)
+router.get('/product/borrow',auth,borrow)
+router.put('/product/updateborrow',auth,updateborrow)
 
 router.get('/product/:id',auth,read)
 

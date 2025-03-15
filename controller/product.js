@@ -10,6 +10,39 @@ exports.read = async (req, res) => {
     console.log(error);
   }
 };
+exports.updateborrow = async (req, res) => {
+  try {
+    const { email,price,image,title,borrowEmail,status } = req.body;
+    const id = req.params.id;
+    console.log(req.body);
+    
+    const readborrow = await product.findOneAndUpdate({ 
+      email: email,
+      price: price,
+      image: image,
+      title: title,
+    },{borrowEmail:borrowEmail,status:status}, { new: true }).exec();
+    res.send(readborrow);
+  } catch (error) {
+    console.log(error);
+  }
+};
+exports.borrow = async (req, res) => {
+  try {
+    const { email,price,image,title} = req.query;
+    const id = req.params.id;
+    const readborrow = await product.findOne({ 
+      email: email,
+      price: price,
+      image: image,
+      title: title,
+    }).exec();
+    res.send(readborrow);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 exports.list = async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const productSchema = mongoose.Schema(
+const borrowSchema = mongoose.Schema(
   {
     title: {
       type:String,
@@ -25,13 +25,9 @@ const productSchema = mongoose.Schema(
     },
     borrowEmail:{
       type:String,
-      default:null,
     },
-    status:{
-      type:String,
-      enum: ["available", "borrowed"],
-    },
+
   },{ timestamps: true }
 );
 
-module.exports = mongoose.model('product',productSchema)
+module.exports = mongoose.model('borrow',borrowSchema)
