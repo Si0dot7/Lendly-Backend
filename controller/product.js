@@ -12,7 +12,7 @@ exports.read = async (req, res) => {
 };
 exports.updateborrow = async (req, res) => {
   try {
-    const { email,price,image,title,borrowEmail,status } = req.body;
+    const { email,price,image,title,borrowEmail,status,favorite,favoriteEmail } = req.body;
     const id = req.params.id;
     console.log(req.body);
     
@@ -21,7 +21,7 @@ exports.updateborrow = async (req, res) => {
       price: price,
       image: image,
       title: title,
-    },{borrowEmail:borrowEmail,status:status}, { new: true }).exec();
+    },{borrowEmail:borrowEmail,status:status,favorite:favorite,favoriteEmail:favoriteEmail}, { new: true }).exec();
     res.send(readborrow);
   } catch (error) {
     console.log(error);

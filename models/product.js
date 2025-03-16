@@ -31,6 +31,14 @@ const productSchema = mongoose.Schema(
       type:String,
       enum: ["available", "borrowed"],
     },
+    favorite:{
+      type:Boolean,
+      default:false,
+    },
+    favoriteEmail:{
+      type:String,
+      default:null,
+    },
   },{ timestamps: true }
 );
 
